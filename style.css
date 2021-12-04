@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+}
+
+.text{
+    flex: 0 1 60%;
+    border: 1px solid black;
+    padding: 5px;
+}
+.commands{
+    flex: 0 1 40%;
+    border: 1px solid black;
+    margin-left: 2%;
+    padding: 5px;
+
+}

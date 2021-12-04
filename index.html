@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>DOM</title>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="text" id="text">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus veritatis amet fuga modi dolorem earum odio a eum nam praesentium aliquam eaque aut unde labore quisquam odit, ad quibusdam recusandae!</p>
+            <img src="./hint.png" width="40" height="40" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nemo, neque, qui incidunt quo possimus voluptate molestias quia, cupiditate fuga ea. Quibusdam placeat laboriosam sint in! Numquam facilis consectetur nostrum.</p>
+        </div>
+        <div class="commands">
+            <table>
+                <tr>
+                    <td>Couleur de fond</td>
+                    <td>
+                        <select id="backgroundColor" onchange="update()">
+                            <option value="white">Blanc</option>
+                            <option value="blue">Bleu</option>
+                            <option value="yellow">Jaune</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Texte</td>
+                    <td>
+                        <select id="textType" onchange="update()">
+                            <option value="italic">Normal</option>
+                            <option value="underline">Souligné</option>
+                            <option value="italic">Italique</option>
+                            <option value="bold">Gras</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Police</td>
+                    <td>
+                        <select name="fontFamily" id="">
+                            <option value="">Times New Roman</option>
+                            <option value="">Arial</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Police 1ère phrase</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">Times New Roman</option>
+                            <option value="">Arial</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Premier caracère des phrases</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">Normal</option>
+                            <option value="">Gras</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mot en rouge</td>
+                    <td>
+                        <input type="text" name="" id="">
+                    </td>
+                    <td>
+                        <input type="submit" value="ok">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bordure images</td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">Rien</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        const text = document.getElementById('text');
+        const bgColor = document.getElementById('backgroundColor');
+        const textType = document.getElementById('textType');        
+        const textParagraph = document.getElementsByName('p');
+        
+        function update(){
+            text.style.backgroundColor = bgColor.value;
+            textParagraph.style.textDecoration = textType.value;
+            console.log(textType.value);
+        }
+    </script>
+</body>
+</html>
