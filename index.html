@@ -11,9 +11,9 @@
 
     <div class="container" id="container">
         <div class="text" id="text">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus veritatis amet fuga modi dolorem earum odio a eum nam praesentium aliquam eaque aut unde labore quisquam odit, ad quibusdam recusandae!</p>
+            <p id="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus veritatis amet fuga modi dolorem earum odio a eum nam praesentium aliquam eaque aut unde labore quisquam odit, ad quibusdam recusandae!</p>
             <img src="./hint.png" width="40" height="40" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nemo, neque, qui incidunt quo possimus voluptate molestias quia, cupiditate fuga ea. Quibusdam placeat laboriosam sint in! Numquam facilis consectetur nostrum.</p>
+            <p id="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nemo, neque, qui incidunt quo possimus voluptate molestias quia, cupiditate fuga ea. Quibusdam placeat laboriosam sint in! Numquam facilis consectetur nostrum.</p>
         </div>
         <div class="commands">
             <table>
@@ -31,35 +31,35 @@
                     <td>Texte</td>
                     <td>
                         <select id="textType" onchange="update()">
-                            <option value="italic">Normal</option>
+                            <option value="none">Normal</option>
                             <option value="underline">Souligné</option>
-                            <option value="italic">Italique</option>
-                            <option value="bold">Gras</option>
+                            <option value="line-through">Ligne à travers</option>
+                            <option value="overline">Surligné</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Police</td>
                     <td>
-                        <select name="fontFamily" id="">
-                            <option value="">Times New Roman</option>
-                            <option value="">Arial</option>
+                        <select id="textFont" onchange="update()">
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Police 1ère phrase</td>
                     <td>
-                        <select name="" id="">
-                            <option value="">Times New Roman</option>
-                            <option value="">Arial</option>
+                        <select id="textFont1" onchange="update()">
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Premier caracère des phrases</td>
                     <td>
-                        <select name="" id="">
+                        <select name="" id="firstC" onchange="update()">
                             <option value="">Normal</option>
                             <option value="">Gras</option>
                         </select>
@@ -68,17 +68,18 @@
                 <tr>
                     <td>Mot en rouge</td>
                     <td>
-                        <input type="text" name="" id="">
+                        <input type="text" name="" id="word" >
                     </td>
                     <td>
-                        <input type="submit" value="ok">
+                        <input type="submit" value="ok" onclick="update()">
                     </td>
                 </tr>
                 <tr>
                     <td>Bordure images</td>
                     <td>
-                        <select name="" id="">
+                        <select id="imageBorder" onchange="update()">
                             <option value="">Rien</option>
+                            <option value="1px solid black">Border</option>
                         </select>
                     </td>
                 </tr>
@@ -88,13 +89,38 @@
     <script>
         const text = document.getElementById('text');
         const bgColor = document.getElementById('backgroundColor');
-        const textType = document.getElementById('textType');        
-        const textParagraph = document.getElementsByName('p');
+        const textType = document.getElementById('textType');   
+        const textFont = document.getElementById('textFont');        
+        const textFont1 = document.getElementById('textFont1');        
+        const imageBorder = document.getElementById('imageBorder');
+        const word = document.getElementById('word');
         
+        const allpTags = document.querySelectorAll('p');
+        const img = document.querySelector('img');
+                                                        
         function update(){
             text.style.backgroundColor = bgColor.value;
-            textParagraph.style.textDecoration = textType.value;
-            console.log(textType.value);
+            img.style.border=imageBorder.value;
+        
+
+            
+            allpTags[0].style.fontFamily = textFont1.value;
+
+            allpTags.forEach(each => {
+                each.style.textDecoration = textType.value;
+                each.style.fontFamily = textFont.value; 
+                const newp = each.innerHTML.split(" ").map((w)=>{
+                    if(w=== word.value){
+                        return '<span style="color:red;">'+w+'</span>';
+                    }else{
+                        return w;
+                    }
+                }).join(" ");
+                each.innerHTML = newp;    
+            })
+
+
+        
         }
     </script>
 </body>
